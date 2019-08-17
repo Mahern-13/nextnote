@@ -13,11 +13,8 @@
     "yarn": "^1.17.3"
   },
   "scripts": {
-    "build-css": "node-sass --include-path ./src --include-path ./node_modules src/ -o src/",
-    "watch-css": "npm run build-css && node-sass --include-path ./src  --include-path ./node_modules src/ -o src/ --watch --recursive",
-    "start": "PORT=4000 npm-run-all -p watch-css start-js",
-    "build": "npm run build-css && react-scripts build",
-    "start-js": "react-scripts start",
+    "start": "PORT=4000 react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

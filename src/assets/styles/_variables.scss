@@ -1,0 +1,114 @@
+//== Colors
+
+$gray-base: #000 !default;
+$gray-darker: lighten($gray-base, 13.5%) !default;
+$gray-dark: lighten($gray-base, 20%) !default;
+$gray: lighten($gray-base, 33.5%) !default;
+$gray-light: lighten($gray-base, 46.7%) !default;
+$gray-lighter: lighten($gray-base, 93.5%) !default;
+
+$color-secondary: #0275d8 !default;
+$color-primary: #00c34c !default;
+$color-dark: #181818 !default;
+$color-lighter: #282828 !default;
+$color-white: #ffffff !default;
+$color-danger: #d9534f !default;
+
+$card-primary: $color-primary !default;
+$color-placeholder: rgba(255, 255, 255, 0.8) !default;
+$body-bg: $color-white !default;
+
+$text-color: $gray-dark !default;
+
+//Typography
+
+$font-family-sans-serif: "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-serif: Georgia, "Times New Roman", Times, serif !default;
+$font-family-text: "Gotham SSm A", "Gotham SSm B", sans-serif !default;
+$font-family-base: $font-family-sans-serif !default;
+
+$font-size-base: 14px !default;
+$font-size-large: ceil(($font-size-base * 1.25)) !default; // ~18px
+$font-size-small: ceil(($font-size-base * 0.85)) !default; // ~12px
+
+$line-height-base: 1.428571429 !default; // 20/14
+$line-height-computed: floor(
+  ($font-size-base * $line-height-base)
+) !default; // ~20px
+
+$headings-font-family: $font-family-sans-serif !default;
+$headings-font-weight: 400 !default;
+$headings-line-height: 1.1 !default;
+$headings-color: inherit !default;
+
+//Component
+
+$text-input-default-height: 52px;
+$text-input-small-height: 18px;
+
+$padding-base-vertical: 6px !default;
+$padding-base-horizontal: 12px !default;
+
+$padding-large-vertical: 12px !default;
+$padding-large-horizontal: 24px !default;
+
+$padding-small-vertical: 5px !default;
+$padding-small-horizontal: 10px !default;
+
+$padding-xs-vertical: 1px !default;
+$padding-xs-horizontal: 5px !default;
+
+$line-height-large: 1.3333333 !default;
+$line-height-small: 1.5 !default;
+
+$border-radius-base: 4px !default;
+$border-radius-large: 6px !default;
+$border-radius-small: 3px !default;
+
+$component-active-color: $body-bg !default;
+$component-active-bg: $color-primary !default;
+
+//Button
+
+$button-font-weight: normal !default;
+
+$button-default-color: #333 !default;
+$button-default-bg: $gray-lighter !default;
+$button-default-border: #ccc !default;
+
+$button-primary-color: $body-bg !default;
+$button-primary-bg: $color-primary !default;
+$button-primary-border: darken($button-primary-bg, 5%) !default;
+
+$button-secondary-color: $body-bg !default;
+$button-secondary-bg: $color-secondary !default;
+$button-secondary-border: darken($button-secondary-bg, 5%) !default;
+
+$button-link-disabled-color: $gray-light !default;
+
+$button-border-radius-base: $border-radius-base !default;
+$button-border-radius-large: $border-radius-large !default;
+$button-border-radius-small: $border-radius-small !default;
+
+$cursor-disabled: not-allowed !default;
+
+$card-bg: $gray-lighter !default;
+$card-body-padding: 15px !default;
+$card-heading-padding: 5px 10px !default;
+$card-footer-padding: $card-heading-padding !default;
+$card-border-radius: $border-radius-base !default;
+
+$card-inner-border: #ddd !default;
+$card-footer-bg: #f5f5f5 !default;
+
+$card-default-text: $body-bg !default;
+$card-default-border: $color-dark !default;
+$card-default-heading-bg: $color-dark !default;
+
+$card-primary-text: $body-bg !default;
+$card-primary-border: $color-primary !default;
+$card-primary-heading-bg: $color-primary !default;
+
+$card-secondary-text: $body-bg !default;
+$card-secondary-border: $color-secondary !default;
+$card-secondary-heading-bg: $color-secondary !default;

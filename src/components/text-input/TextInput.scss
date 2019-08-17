@@ -1,0 +1,94 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/mixins/text-input";
+
+* {
+  box-sizing: border-box;
+}
+
+.field {
+  width: 100%;
+  height: $text-input-default-height;
+  border-radius: $border-radius-base;
+  position: relative;
+  background-color: rgba(248, 248, 248, 0.3);
+  transition: 0.3s background-color ease-in-out, 0.3s box-shadow ease-in-out;
+
+  &:hover {
+    background-color: rgba(248, 248, 248, 0.45);
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.05);
+  }
+
+  &.active {
+    background-color: $body-bg;
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.2);
+  }
+
+  &.active input {
+    padding: 24px 16px 8px 16px;
+  }
+
+  &.active input + label {
+    top: $border-radius-base;
+    opacity: 1;
+    color: $color-primary;
+  }
+
+  & input {
+    width: 100%;
+    height: $text-input-default-height;
+    position: relative;
+    padding: 0px 16px;
+    border: none;
+    border-radius: $border-radius-base;
+    font-family: $font-family-text;
+    font-size: 16px;
+    font-weight: $headings-font-weight;
+    line-height: $line-height-base;
+    background-color: transparent;
+    color: $gray-darker;
+    outline: none;
+    box-shadow: 0px 4px 20px 0px transparent;
+    transition: 0.3s background-color ease-in-out, 0.3s box-shadow ease-in-out,
+      0.1s padding ease-in-out;
+    -webkit-appearance: none;
+  }
+
+  & input::-webkit-input-placeholder {
+    color: $color-placeholder;
+  }
+  & input::-moz-placeholder {
+    color: $color-placeholder;
+  }
+  & input:-ms-input-placeholder {
+    color: $color-placeholder;
+  }
+  & input:-moz-placeholder {
+    color: $color-placeholder;
+  }
+
+  & input + label {
+    position: absolute;
+    top: 24px;
+    left: 16px;
+    font-family: $font-family-text;
+    font-size: $font-size-small;
+    font-weight: 600;
+    line-height: $line-height-base;
+    color: $body-bg;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.1s all ease-in-out;
+  }
+
+  & input + label.error {
+    color: $color-danger;
+  }
+}
+
+// Contextual variations
+.text-input-lg {
+  @include text-input-variant($text-input-default-height);
+}
+.text-input-sm {
+  @include text-input-variant($text-input-small-height);
+}

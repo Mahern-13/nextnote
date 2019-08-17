@@ -1,0 +1,9 @@
+@mixin text-input-variant($height) {
+  .field {
+    height: $height;
+
+    &input {
+      height: $height;
+    }
+  }
+}
