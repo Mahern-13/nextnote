@@ -1,5 +1,5 @@
 import React from "react";
-import Wrapper from "../wrapper";
+import { Wrapper } from "../Wrapper";
 
 import "./Card.scss";
 import { TYPES } from "../../consts";

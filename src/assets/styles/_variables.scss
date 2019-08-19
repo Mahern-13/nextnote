@@ -72,9 +72,9 @@ $component-active-bg: $color-primary !default;
 
 $button-font-weight: normal !default;
 
-$button-default-color: #333 !default;
-$button-default-bg: $gray-lighter !default;
-$button-default-border: #ccc !default;
+$button-default-color: $color-white !default;
+$button-default-bg: $color-lighter !default;
+$button-default-border: $color-dark !default;
 
 $button-primary-color: $body-bg !default;
 $button-primary-bg: $color-primary !default;
@@ -92,7 +92,7 @@ $button-border-radius-small: $border-radius-small !default;
 
 $cursor-disabled: not-allowed !default;
 
-$card-bg: $gray-lighter !default;
+$card-bg: $color-dark !default;
 $card-body-padding: 15px !default;
 $card-heading-padding: 5px 10px !default;
 $card-footer-padding: $card-heading-padding !default;

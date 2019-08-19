@@ -12,10 +12,10 @@
   position: relative;
   max-width: 100%;
   width: 100%;
-  min-width: 250px;
   height: auto;
   display: flex;
   flex-flow: column;
+  overflow: scroll;
   margin: 1rem;
 }
 
