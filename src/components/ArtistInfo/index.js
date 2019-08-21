@@ -5,7 +5,7 @@ import { Wrapper } from "../Wrapper";
 
 import { useArtistContext } from "../../context/ArtistContext";
 
-const ArtistInfo = props => {
+const ArtistInfo = () => {
   const { currentArtist } = useArtistContext();
   return !currentArtist ? null : (
     <Wrapper assignClass="artist-info">

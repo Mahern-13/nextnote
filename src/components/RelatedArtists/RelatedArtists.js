@@ -7,7 +7,7 @@ import {
   useArtistActionsContext
 } from "../../context/ArtistContext";
 
-const RelatedArtists = props => {
+const RelatedArtists = () => {
   const { relatedArtists } = useArtistContext();
   const { fetchArtist } = useArtistActionsContext();
 

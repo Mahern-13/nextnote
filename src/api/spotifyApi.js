@@ -1,11 +1,20 @@
 import Api from "./Api";
 
 class SpotifyApi extends Api {
-  oauth(id) {
-    const spotifyUrl = id
-      ? `spotify/api-using-oauth/${id}`
+  oauth(artistId, { userId, access_token }) {
+    const spotifyUrl = artistId
+      ? `spotify/api-using-oauth/${artistId}`
       : "spotify/api-using-oauth";
-    return this.get(spotifyUrl);
+    return this.post(spotifyUrl, {
+      userId,
+      access_token
+    });
+  }
+
+  getAccessToken(id) {
+    return this.post("spotify/access_token", {
+      id
+    });
   }
 }
 

@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { memo, useState } from "react";
 import { Default as SubmitButton } from "../Button/Button.js";
 import { Primary as PrimaryCard } from "../Card/Card.js";
 import TextInput from "../TextInput";

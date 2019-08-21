@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Default as Card } from "../Card/Card.js";
 import { Wrapper } from "../Wrapper";
 import "./MusicPlayer.scss";
-import spotifyApi from "../../api/spotifyApi";
-import { withAsync } from "../../utils";
 import { useArtistContext } from "../../context/ArtistContext";
 
-const MusicPlayer = props => {
+const MusicPlayer = () => {
   const { topTracks } = useArtistContext();
 
   return (

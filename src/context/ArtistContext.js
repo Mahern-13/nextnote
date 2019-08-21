@@ -8,7 +8,7 @@ import React, {
 import spotifyApi from "../api/spotifyApi";
 import { withAsync } from "../utils";
 import ticketMasterApi from "../api/ticketMasterApi";
-
+import { useUserContext } from "./UserContext";
 const ArtistContext = createContext({});
 const ArtistActionsContext = createContext({});
 
@@ -38,14 +38,16 @@ const reducer = (state, action) => {
 
 export const ArtistContextProvider = props => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const user = useUserContext();
 
   const _fetchArtist = async (artist = {}) => {
+    console.log("USER DATA IN FETCH ARTIST", user);
     const { id = "4dpARuHxo51G3z768sgnrY", name = "Adele" } = artist;
 
     const [response, error] = await withAsync(() =>
       Promise.all([
-        spotifyApi.oauth(id),
-        ticketMasterApi.getUpcomingTours(name)
+        spotifyApi.oauth(id, user),
+        ticketMasterApi.getUpcomingTours(name, user)
       ])
     );
 
@@ -60,10 +62,11 @@ export const ArtistContextProvider = props => {
       ? tourData[0]["_embedded"].venues[0].location
       : {};
     const { latitude, longitude } = location;
+    console.log("artist data", artistData);
     const payload = {
       ...artistData,
-      relatedArtists: artistData.relatedArtists.artists.slice(0, 10),
-      topTracks: artistData.topTracks.tracks.map(track => {
+      relatedArtists: artistData.data.relatedArtists.artists.slice(0, 10),
+      topTracks: artistData.data.topTracks.tracks.map(track => {
         const src = track.external_urls.spotify;
         const [, urlSecondPart] = src.split(base);
         track.sourceUrl = `${base}/embed${urlSecondPart}`;

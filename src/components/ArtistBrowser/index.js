@@ -1,2 +1,3 @@
-import ArtistBrowser from "./ArtistBrowser";
-export default ArtistBrowser;
+//import ArtistBrowser from "./ArtistBrowser";
+//export default ArtistBrowser;
+export * from "./ArtistBrowser";
