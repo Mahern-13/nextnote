@@ -40,9 +40,11 @@ export const ArtistContextProvider = props => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const user = useUserContext();
 
-  const _fetchArtist = async (artist = {}) => {
+  const _fetchArtist = async (
+    artist = { id: "4dpARuHxo51G3z768sgnrY", name: "Adele" }
+  ) => {
     console.log("USER DATA IN FETCH ARTIST", user);
-    const { id = "4dpARuHxo51G3z768sgnrY", name = "Adele" } = artist;
+    const { id, name } = artist;
 
     const [response, error] = await withAsync(() =>
       Promise.all([
@@ -64,7 +66,7 @@ export const ArtistContextProvider = props => {
     const { latitude, longitude } = location;
     console.log("artist data", artistData);
     const payload = {
-      ...artistData,
+      ...artistData.data,
       relatedArtists: artistData.data.relatedArtists.artists.slice(0, 10),
       topTracks: artistData.data.topTracks.tracks.map(track => {
         const src = track.external_urls.spotify;
