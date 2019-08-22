@@ -25,7 +25,6 @@ const initialState = {
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "setArtistDetails":
     case "setArtistState":
       return action.payload;
     case "setLocation":
@@ -69,10 +68,7 @@ export const ArtistContextProvider = props => {
     }
 
     const base = "https://open.spotify.com";
-    // const location = tourData.length
-    //   ? tourData[0]._embedded.venues[0].location
-    //   : {};
-    // const { latitude, longitude } = location;
+
     const payload = {
       ...artistData.data,
       relatedArtists: artistData.data.relatedArtists.artists.slice(0, 10),

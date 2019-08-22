@@ -40,7 +40,6 @@ const SearchArtist = () => {
     axios
       .get(`http://localhost:3000/spotify/search/${name}?userId=bronzedradio`)
       .then(response => {
-        console.log(response);
         return fetchArtist(response.data);
       });
     resetForm();
