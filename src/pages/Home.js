@@ -28,7 +28,6 @@ const Home = () => {
         const { auth_data } = response.data;
         setIsAuthenticated(true);
         localStorage.setItem("auth_data", JSON.stringify(auth_data));
-        spotifyApi.setToken(auth_data.access_token);
         setUser({
           ...auth_data,
           userId: id
@@ -39,7 +38,6 @@ const Home = () => {
         if (authDataFromStorage) {
           const data = JSON.parse(authDataFromStorage);
           const userId = localStorage.getItem("userId");
-          spotifyApi.setToken(data.access_token);
           setUser({
             ...data,
             userId
