@@ -8,7 +8,15 @@ const BaseCard = ({ header, children, cardType }) => (
   <div className={`card card-${cardType || TYPES.default}`}>
     {header !== false && <div className="card-heading">{header}</div>}
     {header !== false && <div className="card-heading-border" />}
-    <Wrapper styling={{ flexDirection: "column" }}>{children}</Wrapper>
+    <Wrapper
+      styling={{
+        flexDirection: "column",
+        overflow: "scroll",
+        justifyContent: "none"
+      }}
+    >
+      {children}
+    </Wrapper>
   </div>
 );
 

@@ -3,6 +3,7 @@ import { Default as SubmitButton } from "../Button/Button.js";
 import { Primary as PrimaryCard } from "../Card/Card.js";
 import TextInput from "../TextInput/TextInput";
 import Wrapper from "../Wrapper/Wrapper";
+import axios from "axios";
 
 const useForm = (fields = {}) => {
   const [formState, setFormState] = useState(fields);
@@ -33,6 +34,9 @@ const SearchArtist = () => {
   const { name } = form;
 
   const _onSubmitForm = () => {
+    axios
+      .get(`http://localhost:3000/spotify/search/${name}?userId=bronzedradio`)
+      .then(response => console.log("Searched Artist", response.data));
     resetForm();
   };
 

@@ -15,7 +15,6 @@
   height: auto;
   display: flex;
   flex-flow: column;
-  overflow: scroll;
   margin: 1rem;
 }
 
@@ -23,6 +22,7 @@
 .card-body {
   padding: $card-body-padding;
   @include clearfix;
+  overflow: scroll;
 }
 
 // Optional heading
