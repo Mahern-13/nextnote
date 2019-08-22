@@ -33,3 +33,14 @@
   margin-top: -4px;
   background-color: #fff;
 }
+
+.event {
+  max-width: 300px;
+  cursor: pointer;
+}
+
+.event:hover {
+  -moz-box-shadow: 0 0 5px rgb(255, 255, 255);
+  -webkit-box-shadow: 0 0 5px rgb(255, 255, 255);
+  box-shadow: 0 0 5px rgb(255, 255, 255);
+}

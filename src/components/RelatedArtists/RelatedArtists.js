@@ -22,7 +22,7 @@ const RelatedArtists = () => {
                 onClick={() => fetchArtist(artist)}
                 height="80"
                 title={artist.id}
-                styling={{ justifyContent: "space-between" }}
+                assignClass="artist"
               >
                 <img
                   src={artist.images[artist.images.length - 1].url}

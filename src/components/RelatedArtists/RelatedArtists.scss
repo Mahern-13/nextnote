@@ -4,3 +4,13 @@
   width: 40%;
   overflow: scroll;
 }
+
+.artist {
+  cursor: pointer;
+}
+
+.artist:hover {
+  -moz-box-shadow: 0 0 5px rgb(255, 255, 255);
+  -webkit-box-shadow: 0 0 5px rgb(255, 255, 255);
+  box-shadow: 0 0 5px rgb(255, 255, 255);
+}

@@ -38,7 +38,7 @@ const TourDates = () => {
                 }
                 height="80"
                 title={event.id}
-                styling={{ justifyContent: "space-between", width: "300px" }}
+                assignClass="event"
               >
                 <SecondaryCard header={false}>
                   <Wrapper
