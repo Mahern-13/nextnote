@@ -30,7 +30,10 @@ const reducer = (state, action) => {
     case "setLocation":
       const location = action.payload._embedded.venues[0].location;
       const { latitude, longitude } = location;
-      return { ...state, location: [latitude, longitude] };
+      return {
+        ...state,
+        position: [parseFloat(latitude), parseFloat(longitude)]
+      };
     default:
       return state;
   }
@@ -43,13 +46,12 @@ export const ArtistContextProvider = props => {
   const _fetchArtist = async (
     artist = { id: "4dpARuHxo51G3z768sgnrY", name: "Adele" }
   ) => {
-    console.log("USER DATA IN FETCH ARTIST", user);
     const { id, name } = artist;
 
     const [response, error] = await withAsync(() =>
       Promise.all([
         spotifyApi.oauth(id, user),
-        ticketMasterApi.getUpcomingTours(name, user)
+        ticketMasterApi.getUpcomingTours(name)
       ])
     );
 
@@ -57,14 +59,19 @@ export const ArtistContextProvider = props => {
       console.error(error);
       return;
     }
+
     const [artistData, tourData] = response;
 
+    if (artistData.data && artistData.data.error === "refresh_token_failed") {
+      window.location.href = "http://localhost:3000/spotify/login";
+      return;
+    }
+
     const base = "https://open.spotify.com";
-    const location = tourData.length
-      ? tourData[0]["_embedded"].venues[0].location
-      : {};
-    const { latitude, longitude } = location;
-    console.log("artist data", artistData);
+    // const location = tourData.length
+    //   ? tourData[0]._embedded.venues[0].location
+    //   : {};
+    // const { latitude, longitude } = location;
     const payload = {
       ...artistData.data,
       relatedArtists: artistData.data.relatedArtists.artists.slice(0, 10),
@@ -74,11 +81,8 @@ export const ArtistContextProvider = props => {
         track.sourceUrl = `${base}/embed${urlSecondPart}`;
         return track;
       }),
-      events: tourData.slice(0, 4),
-      position:
-        latitude && longitude
-          ? [parseFloat(latitude), parseFloat(longitude)]
-          : []
+      events: tourData,
+      position: state.position
     };
     dispatch({ type: "setArtistState", payload });
   };

@@ -1,11 +1,11 @@
 import React from "react";
 import "./ArtistBrowser.scss";
-import MusicPlayer from "../MusicPlayer";
-import RelatedArtists from "../RelatedArtists";
-import SearchForm from "../SearchForm";
-import ArtistInfo from "../ArtistInfo";
-import TourDates from "../TourDates";
-import { Wrapper } from "../Wrapper";
+import MusicPlayer from "../MusicPlayer/MusicPlayer";
+import RelatedArtists from "../RelatedArtists/RelatedArtists";
+import SearchForm from "../SearchForm/SearchForm";
+import ArtistInfo from "../ArtistInfo/ArtistInfo";
+import TourDates from "../TourDates/TourDates";
+import Wrapper from "../Wrapper/Wrapper";
 
 const Column = ({ children }) => (
   <Wrapper styling={{ flexDirection: "column" }}>{children}</Wrapper>
@@ -16,9 +16,7 @@ const ArtistBrowser = () => {
   return (
     <Wrapper>
       <Row>
-        <Column styling={{ flexDirection: "column" }}>
-          <TourDates />
-        </Column>
+        <TourDates />
       </Row>
       <Row styling={{ flexGrow: "2" }}>
         <Column>

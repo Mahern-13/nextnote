@@ -1,8 +1,8 @@
 import React, { memo, useState } from "react";
 import { Default as SubmitButton } from "../Button/Button.js";
 import { Primary as PrimaryCard } from "../Card/Card.js";
-import TextInput from "../TextInput";
-import { Wrapper } from "../Wrapper";
+import TextInput from "../TextInput/TextInput";
+import Wrapper from "../Wrapper/Wrapper";
 
 const useForm = (fields = {}) => {
   const [formState, setFormState] = useState(fields);
@@ -33,7 +33,6 @@ const SearchArtist = () => {
   const { name } = form;
 
   const _onSubmitForm = () => {
-    console.log(name);
     resetForm();
   };
 

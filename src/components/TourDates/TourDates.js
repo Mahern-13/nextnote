@@ -1,105 +1,32 @@
-import React, { useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Default as Card, Secondary as SecondaryCard } from "../Card/Card.js";
-import { Wrapper } from "../Wrapper";
+import Wrapper from "../Wrapper/Wrapper";
+import ReactMapGL, { Marker } from "react-map-gl";
+import TrebleClef from "../../assets/treble-clef.png";
 import "./TourDates.scss";
-import "./moving_marker";
 
 import {
   useArtistContext,
   useArtistActionsContext
 } from "../../context/ArtistContext";
 
-/* global L */
-const TourDates = ({ artistId }) => {
-  //const [events, setEvents] = useState([]);
-  //const [position, setPosition] = useState(null);
+const TourDates = () => {
+  const [viewport, setViewport] = useState(null);
   const { events, position } = useArtistContext();
   const { dispatch } = useArtistActionsContext();
-  // const mapRef = useRef(null);
-  // const isMapInitialised = useRef(false);
-  // const _initMap = position => {
-  //   var map = L.map("map").setView(position, 10);
-  //   mapRef.current = map;
-  //   var OpenStreetMap_DE = L.tileLayer(
-  //     "https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png",
-  //     {
-  //       maxZoom: 18,
-  //       attribution:
-  //         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  //     }
-  //   ).addTo(map);
-  //   // var coordinateArray = [[41.8781, -87.6298]];
-  //   // here is the line you draw (if you want to see the animated marker path on the map)
-  //   // var myPolyline = L.polyline(coordinateArray);
-  //   // myPolyline.setStyle({ color: "transparent" });
-  //   // myPolyline.addTo(map);
-  //   var eventMarker = L.marker(position).addTo(map);
-  //   // var mend = L.marker(coordinateArray[coordinateArray.length - 1]).addTo(map);
-  //   // here is the moving marker (6 seconds animation)
-  //   // var myIcon = L.icon({
-  //   //   iconUrl: "../../assets/flight.png",
-  //   //   iconSize: [50, 45]
-  //   // });
-  //   // var myMovingMarker = L.Marker.movingMarker(coordinateArray, 5000, {
-  //   //   autostart: false,
-  //   //   icon: myIcon
-  //   // });
-  //   // setTimeout(function() {
-  //   //   map.setView([position], map.getZoom(), {
-  //   //     animate: true,
-  //   //     pan: {
-  //   //       duration: 5
-  //   //     }
-  //   //   });
-  //   //   map.addLayer(myMovingMarker);
-  //   //   myMovingMarker.start();
-  //   //   setTimeout(function() {
-  //   //     map.removeLayer(mstart);
-  //   //   }, 5000);
-  //   // }, 1000);
-  // };
 
-  // // const usePrevious = value => {
-  // //   const ref = useRef();
-  // //   useEffect(() => {
-  // //     ref.current = value;
-  // //   }, [value]);
-
-  // //   return ref.current;
-  // // };
-
-  // useEffect(() => {
-  //   if (position && !isMapInitialised.current) {
-  //     isMapInitialised.current = true;
-  //     _initMap(position);
-  //   }
-  // }, [position]);
-
-  // useEffect(() => {
-  //   if (position) {
-  //     const map = mapRef.current;
-  //     // var myMovingMarker = L.Marker.movingMarker(coordinateArray, 5000, {
-  //     //   autostart: false,
-  //     //   icon: myIcon
-  //     // });
-  //     map.setView(position, 10);
-  //     var eventMarker = L.marker(position).addTo(map);
-  //     // map.setView([position], map.getZoom(), {
-  //     //   animate: false
-  //     //   // pan: {
-  //     //   //   duration: 5
-  //     //   // }
-  //     // });
-  //     // map.addLayer(myMovingMarker);
-  //     // myMovingMarker.start();
-  //     // setTimeout(function() {
-  //     //   map.removeLayer(mstart);
-  //     // }, 5000);
-  //   }
-  // }, [position]);
+  useEffect(() => {
+    if (position) {
+      setViewport(vp => ({
+        ...vp,
+        latitude: position[0],
+        longitude: position[1]
+      }));
+    }
+  }, [position]);
 
   return (
-    <div className="tour-dates" styling={{ flexDirection: "column" }}>
+    <Wrapper className="tour-dates" styling={{ flexDirection: "column" }}>
       <Card header="Upcoming Concerts">
         {events.length > 0 ? (
           events.map(event => {
@@ -111,12 +38,14 @@ const TourDates = ({ artistId }) => {
                 }
                 height="80"
                 title={event.id}
-                styling={{ justifyContent: "space-between" }}
+                styling={{ justifyContent: "space-between", width: "300px" }}
               >
-                <SecondaryCard header={event.name}>
-                  <Wrapper>
-                    {event.dates.start.localDate +
-                      (event.dates.end ? ` to ${event.dates.end}` : "")}
+                <SecondaryCard header={false}>
+                  <Wrapper
+                    styling={{ flexDirection: "column", fontSize: "12px" }}
+                  >
+                    <p>{event.name}</p>
+                    <p>{`Starts: ${event.dates.start.localDate}`}</p>
                   </Wrapper>
                 </SecondaryCard>
               </Wrapper>
@@ -128,18 +57,35 @@ const TourDates = ({ artistId }) => {
       </Card>
 
       <div className="map-container">
-        {/* {events.length > 0 && (
-          <Map center={position} zoom={10}>
-            <TileLayer
-              attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.de/{z}/{x}/{y}.png"
-            />
-            <Marker position={position} />
-          </Map>
-        )} */}
-        <div id="map" />
+        {position && (
+          <div id="map">
+            <ReactMapGL
+              {...viewport}
+              width={300}
+              height={300}
+              zoom={10}
+              onViewportChange={vp => {
+                setViewport({ ...viewport, ...vp });
+              }}
+              mapStyle="mapbox://styles/mapbox/streets-v11"
+              mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+            >
+              <Marker
+                latitude={position[0]}
+                longitude={position[1]}
+                anchor="bottom"
+              >
+                <img
+                  style={{ height: "30px", width: "30px" }}
+                  alt="clef"
+                  src={TrebleClef}
+                />
+              </Marker>
+            </ReactMapGL>
+          </div>
+        )}
       </div>
-    </div>
+    </Wrapper>
   );
 };
 

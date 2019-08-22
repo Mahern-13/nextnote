@@ -1,12 +1,11 @@
 import React from "react";
 import { Default as Button } from "../Button/Button.js";
 import { Primary as Card } from "../Card/Card.js";
-import { Wrapper } from "../Wrapper";
+import Wrapper from "../Wrapper/Wrapper";
 
 import { useArtistContext } from "../../context/ArtistContext";
 
 const ArtistInfo = () => {
-  console.log("artist context", useArtistContext());
   const { currentArtist } = useArtistContext();
   return !currentArtist ? null : (
     <Wrapper assignClass="artist-info">

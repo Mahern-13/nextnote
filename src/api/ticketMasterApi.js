@@ -3,7 +3,7 @@ import Api from "./Api";
 class TicketMasterApi extends Api {
   ticketMasterUrl = "ticket-master";
 
-  getUpcomingTours(keyword, { userId }) {
+  getUpcomingTours(keyword) {
     return this.get(`${this.ticketMasterUrl}/${encodeURIComponent(keyword)}`);
   }
 }
