@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import ArtistBrowser from "../components/ArtistBrowser/ArtistBrowser";
 import { ArtistContextProvider } from "../context/ArtistContext";
+import { Primary as Card } from "../components/Card/Card.js";
+
 import spotifyApi from "../api/spotifyApi";
 import { withAsync } from "../utils";
 import { useUserActionsContext } from "../context/UserContext";
@@ -43,18 +45,25 @@ const Home = () => {
             userId
           });
           // TODO: verify tokens
-          setIsAuthenticated(true);
+          setIsAuthenticated(false);
           setIsAuthenticating(false);
 
           return;
         }
       }
+      setIsAuthenticated(true);
       setIsAuthenticating(false);
     })();
   }, []);
 
+  console.log(isAuthenticating, isAuthenticated);
+
   if (isAuthenticating) {
-    return <p style={{ color: "white" }}>Loading...</p>;
+    return (
+      <Card header={false}>
+        <h1>Loading...</h1>
+      </Card>
+    );
   }
 
   return isAuthenticated ? (

@@ -1,5 +1,5 @@
 import React from "react";
-import { Default as Button } from "../Button/Button.js";
+import "../Button/Button.scss";
 import { Primary as Card } from "../Card/Card.js";
 import Wrapper from "../Wrapper/Wrapper";
 
@@ -20,13 +20,11 @@ const ArtistInfo = () => {
             />
             <Wrapper styling={{ flexDirection: "column" }}>
               <p>{`Total Followers: ${currentArtist.followers.total}`}</p>
-              <a href={currentArtist.external_urls.spotify}>
-                <Button
-                  disabled={false}
-                  text="Go to Spotify"
-                  onClick={() => {}}
-                  buttonSize="LARGE"
-                />
+              <a
+                href={currentArtist.external_urls.spotify}
+                class="button button-default button-lg"
+              >
+                Go to Spotify
               </a>
             </Wrapper>
           </Wrapper>

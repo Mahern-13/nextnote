@@ -39,10 +39,11 @@ const SearchArtist = () => {
   const _onSubmitForm = () => {
     axios
       .get(`http://localhost:3000/spotify/search/${name}?userId=bronzedradio`)
-      .then(response => {
-        return fetchArtist(response.data);
+      .then(response => fetchArtist(response.data))
+      .then(() => resetForm())
+      .catch(error => {
+        console.error("Error:", error);
       });
-    resetForm();
   };
 
   return (
@@ -58,7 +59,7 @@ const SearchArtist = () => {
         />
         <SubmitButton
           disabled={false}
-          text="Submit"
+          text="Search"
           onClick={_onSubmitForm}
           buttonSize="LARGE"
         />
