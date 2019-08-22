@@ -1,6 +1,7 @@
 import React, { memo, useState } from "react";
 import { Default as SubmitButton } from "../Button/Button.js";
 import { Primary as PrimaryCard } from "../Card/Card.js";
+import { useArtistActionsContext } from "../../context/ArtistContext";
 import TextInput from "../TextInput/TextInput";
 import Wrapper from "../Wrapper/Wrapper";
 import axios from "axios";
@@ -27,6 +28,8 @@ const useForm = (fields = {}) => {
 };
 
 const SearchArtist = () => {
+  const { fetchArtist } = useArtistActionsContext();
+
   const { form, onChange, resetForm } = useForm({
     name: ""
   });
@@ -36,7 +39,10 @@ const SearchArtist = () => {
   const _onSubmitForm = () => {
     axios
       .get(`http://localhost:3000/spotify/search/${name}?userId=bronzedradio`)
-      .then(response => console.log("Searched Artist", response.data));
+      .then(response => {
+        console.log(response);
+        return fetchArtist(response.data);
+      });
     resetForm();
   };
 
