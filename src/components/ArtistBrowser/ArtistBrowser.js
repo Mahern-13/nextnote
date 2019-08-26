@@ -5,24 +5,23 @@ import RelatedArtists from "../RelatedArtists/RelatedArtists";
 import SearchForm from "../SearchForm/SearchForm";
 import ArtistInfo from "../ArtistInfo/ArtistInfo";
 import TourDates from "../TourDates/TourDates";
-import Wrapper from "../Wrapper/Wrapper";
-
-const Column = ({ children }) => (
-  <Wrapper styling={{ flexDirection: "column" }}>{children}</Wrapper>
-);
-const Row = props => <Wrapper {...props}>{props.children}</Wrapper>;
+import Wrapper, { Row, Column } from "../Wrapper/Wrapper";
 
 const ArtistBrowser = () => {
   return (
     <Wrapper>
-      <Row>
+      <Row styling={{ flex: "1 0 auto", justifyContent: "center" }}>
         <TourDates />
       </Row>
-      <Row styling={{ flexGrow: "2" }}>
-        <Column>
+      <Row styling={{ flex: "3 0 auto", justifyContent: "center" }}>
+        <Column styling={{ width: "90%" }}>
           <SearchForm />
           <ArtistInfo />
-          <Row styling={{ width: "100%" }}>
+          <Row
+            styling={{
+              width: "100%"
+            }}
+          >
             <MusicPlayer />
             <RelatedArtists />
           </Row>

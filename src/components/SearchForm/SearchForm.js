@@ -3,8 +3,9 @@ import { Default as SubmitButton } from "../Button/Button.js";
 import { Primary as PrimaryCard } from "../Card/Card.js";
 import { useArtistActionsContext } from "../../context/ArtistContext";
 import TextInput from "../TextInput/TextInput";
-import Wrapper from "../Wrapper/Wrapper";
+import Wrapper, { Row } from "../Wrapper/Wrapper";
 import axios from "axios";
+import { withAsync } from "../../utils";
 
 const useForm = (fields = {}) => {
   const [formState, setFormState] = useState(fields);
@@ -36,35 +37,44 @@ const SearchArtist = () => {
 
   const { name } = form;
 
-  const _onSubmitForm = () => {
-    axios
-      .get(`http://localhost:3000/spotify/search/${name}?userId=bronzedradio`)
-      .then(response => fetchArtist(response.data))
-      .then(() => resetForm())
-      .catch(error => {
-        console.error("Error:", error);
-      });
+  const _onSubmitForm = async () => {
+    const [response, error] = await withAsync(() =>
+      axios.get(
+        `http://localhost:3000/spotify/search/${name}?userId=bronzedradio`
+      )
+    );
+
+    if (error) {
+      console.error("Error:", error);
+      return;
+    }
+
+    fetchArtist(response.data);
+    resetForm();
   };
 
   return (
-    <PrimaryCard className="search-artist" cardType="primary" header={false}>
-      <Wrapper styling={{ justifyContent: "space-between" }}>
-        <TextInput
-          id="name-input"
-          label="Artist Name"
-          type="text"
-          name="name"
-          value={name}
-          onChange={onChange}
-        />
-        <SubmitButton
-          disabled={false}
-          text="Search"
-          onClick={_onSubmitForm}
-          buttonSize="LARGE"
-        />
-      </Wrapper>
-    </PrimaryCard>
+    <Wrapper styling={{ width: "100%" }}>
+      <PrimaryCard className="search-artist" cardType="primary" header={false}>
+        <Row styling={{ justifyContent: "space-between" }}>
+          <TextInput
+            id="name-input"
+            label="Artist Name"
+            type="text"
+            name="name"
+            value={name}
+            onChange={onChange}
+          />
+          <SubmitButton
+            styling={{ marginLeft: "10px" }}
+            disabled={false}
+            text="Search"
+            onClick={_onSubmitForm}
+            buttonSize="LARGE"
+          />
+        </Row>
+      </PrimaryCard>
+    </Wrapper>
   );
 };
 

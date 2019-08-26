@@ -1,6 +1,6 @@
 import React from "react";
 import { Default as Card } from "../Card/Card.js";
-import Wrapper from "../Wrapper/Wrapper";
+import Wrapper, { Row, Column } from "../Wrapper/Wrapper";
 import "./RelatedArtists.scss";
 import {
   useArtistContext,
@@ -12,26 +12,39 @@ const RelatedArtists = () => {
   const { fetchArtist } = useArtistActionsContext();
 
   return (
-    <Wrapper assignClass="related-artists">
+    <Wrapper
+      assignClass="related-artists"
+      styling={{ padding: "0px", maxWidth: "40%" }}
+    >
       <Card header="Related Artists">
         {relatedArtists ? (
           relatedArtists.map(artist => {
             return (
-              <Wrapper
+              <Row
                 key={artist.id}
                 onClick={() => fetchArtist(artist)}
                 height="80"
                 title={artist.id}
                 assignClass="artist"
+                styling={{ justifyContent: "space-between" }}
               >
-                <img
-                  src={artist.images[artist.images.length - 1].url}
-                  height="64px"
-                  width="64px"
-                  alt={`Thumbnail-${artist.id}`}
-                />
-                <p>{artist.name}</p>
-              </Wrapper>
+                <Column styling={{ justifyContent: "center" }}>
+                  <img
+                    src={artist.images[artist.images.length - 1].url}
+                    height="64px"
+                    width="64px"
+                    alt={`Thumbnail-${artist.id}`}
+                  />
+                </Column>
+                <Column
+                  styling={{
+                    flexWrap: "wrap",
+                    justifyContent: "center"
+                  }}
+                >
+                  <p>{artist.name}</p>
+                </Column>
+              </Row>
             );
           })
         ) : (

@@ -22,7 +22,7 @@
 .card-body {
   padding: $card-body-padding;
   @include clearfix;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 // Optional heading

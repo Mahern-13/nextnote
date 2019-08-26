@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Default as Card, Secondary as SecondaryCard } from "../Card/Card.js";
-import Wrapper from "../Wrapper/Wrapper";
+import Wrapper, { Row, Column } from "../Wrapper/Wrapper";
 import ReactMapGL, { Marker } from "react-map-gl";
 import TrebleClef from "../../assets/treble-clef.png";
 import "./TourDates.scss";
@@ -17,8 +17,8 @@ const TourDates = () => {
 
   useEffect(() => {
     if (position) {
-      setViewport(vp => ({
-        ...vp,
+      setViewport(prev => ({
+        ...prev,
         latitude: position[0],
         longitude: position[1]
       }));
@@ -26,12 +26,12 @@ const TourDates = () => {
   }, [position]);
 
   return (
-    <Wrapper className="tour-dates" styling={{ flexDirection: "column" }}>
+    <Column className="tour-dates" styling={{ alignItems: "center" }}>
       <Card header="Upcoming Concerts">
         {events.length > 0 ? (
           events.map(event => {
             return (
-              <Wrapper
+              <Row
                 key={event.id}
                 onClick={() =>
                   dispatch({ type: "setLocation", payload: event })
@@ -39,20 +39,23 @@ const TourDates = () => {
                 height="80"
                 title={event.id}
                 assignClass="event"
+                styling={{
+                  alignSelf: "center"
+                }}
               >
                 <SecondaryCard header={false}>
-                  <Wrapper
-                    styling={{ flexDirection: "column", fontSize: "12px" }}
-                  >
+                  <Column styling={{ padding: "5px", fontSize: "12px" }}>
                     <p>{event.name}</p>
                     <p>{`Starts: ${event.dates.start.localDate}`}</p>
-                  </Wrapper>
+                  </Column>
                 </SecondaryCard>
-              </Wrapper>
+              </Row>
             );
           })
         ) : (
-          <p>"Sorry, but there are no events at this time!"</p>
+          <Wrapper>
+            <p>"Sorry, but there are no events at this time!"</p>
+          </Wrapper>
         )}
       </Card>
 
@@ -85,7 +88,7 @@ const TourDates = () => {
           </div>
         )}
       </div>
-    </Wrapper>
+    </Column>
   );
 };
 

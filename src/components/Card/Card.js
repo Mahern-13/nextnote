@@ -10,9 +10,9 @@ const BaseCard = ({ header, children, cardType }) => (
     {header !== false && <div className="card-heading-border" />}
     <Wrapper
       styling={{
-        flexDirection: "column",
         overflow: "scroll",
-        justifyContent: "none"
+        justifyContent: "none",
+        flexDirection: "column"
       }}
     >
       {children}

@@ -22,4 +22,18 @@ const Wrapper = ({ styling, assignClass, onClick, children, disabled }) => (
   </div>
 );
 
+export const Column = props => {
+  console.log(props);
+  return (
+    <Wrapper {...props} styling={{ ...props.styling, flexDirection: "column" }}>
+      {props.children}
+    </Wrapper>
+  );
+};
+export const Row = props => (
+  <Wrapper {...props} sylying={{ ...props.styling, flexDirection: "row" }}>
+    {props.children}
+  </Wrapper>
+);
+
 export default Wrapper;

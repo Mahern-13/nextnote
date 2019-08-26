@@ -8,7 +8,7 @@ const MusicPlayer = () => {
   const { topTracks } = useArtistContext();
 
   return (
-    <Wrapper assignClass="music-player">
+    <Wrapper assignClass="music-player" styling={{ padding: "0px" }}>
       <Card header="Top Ten Tracks">
         {topTracks.map(track => {
           return (

@@ -6,7 +6,7 @@ const Login = props => {
   return (
     <a
       href="http://localhost:3000/spotify/login"
-      class="button button-default button-lg"
+      className="button button-default button-lg"
     >
       Login with spotify
     </a>

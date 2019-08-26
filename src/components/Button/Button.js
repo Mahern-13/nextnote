@@ -2,8 +2,16 @@ import React from "react";
 import { SIZES, TYPES } from "../../consts";
 import "./Button.scss";
 
-const BaseButton = ({ text, onClick, disabled, buttonType, buttonSize }) => (
+const BaseButton = ({
+  text,
+  onClick,
+  disabled,
+  buttonType,
+  buttonSize,
+  styling
+}) => (
   <button
+    style={styling}
     disabled={disabled}
     onClick={onClick}
     className={`button button-${buttonType} button-${[

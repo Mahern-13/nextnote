@@ -54,9 +54,7 @@ const Home = () => {
       setIsAuthenticated(true);
       setIsAuthenticating(false);
     })();
-  }, []);
-
-  console.log(isAuthenticating, isAuthenticated);
+  }, [setUser]);
 
   if (isAuthenticating) {
     return (
