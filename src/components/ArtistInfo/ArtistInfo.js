@@ -1,6 +1,6 @@
 import React from "react";
 import "../Button/Button.scss";
-import { Primary as Card } from "../Card/Card.js";
+import { Primary as Card } from "../Card/Card";
 import Wrapper, { Row, Column } from "../Wrapper/Wrapper";
 
 import { useArtistContext } from "../../context/ArtistContext";

@@ -1,5 +1,5 @@
 import React from "react";
-import { Default as Card } from "../Card/Card.js";
+import { Default as Card } from "../Card/Card";
 import Wrapper from "../Wrapper/Wrapper";
 import "./MusicPlayer.scss";
 import { useArtistContext } from "../../context/ArtistContext";

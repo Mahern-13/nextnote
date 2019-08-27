@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Default as Card, Secondary as SecondaryCard } from "../Card/Card.js";
+import { Default as Card, Secondary as SecondaryCard } from "../Card/Card";
 import Wrapper, { Row, Column } from "../Wrapper/Wrapper";
 import ReactMapGL, { Marker } from "react-map-gl";
 import TrebleClef from "../../assets/treble-clef.png";

@@ -1,14 +1,15 @@
 import React from "react";
 
 import "../components/Button/Button.scss";
+import "./pages.scss";
 
-const Login = props => {
+const Login = () => {
   return (
     <a
       href="http://localhost:3000/spotify/login"
-      className="button button-default button-lg"
+      className="button button-primary button-lg login-button"
     >
-      Login with spotify
+      Login with Spotify
     </a>
   );
 };

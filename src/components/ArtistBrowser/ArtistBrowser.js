@@ -17,11 +17,7 @@ const ArtistBrowser = () => {
         <Column styling={{ width: "90%" }}>
           <SearchForm />
           <ArtistInfo />
-          <Row
-            styling={{
-              width: "100%"
-            }}
-          >
+          <Row>
             <MusicPlayer />
             <RelatedArtists />
           </Row>

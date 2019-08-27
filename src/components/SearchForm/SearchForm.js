@@ -1,6 +1,6 @@
 import React, { memo, useState } from "react";
-import { Default as SubmitButton } from "../Button/Button.js";
-import { Primary as PrimaryCard } from "../Card/Card.js";
+import { Default as SubmitButton } from "../Button/Button";
+import { Primary as PrimaryCard } from "../Card/Card";
 import { useArtistActionsContext } from "../../context/ArtistContext";
 import TextInput from "../TextInput/TextInput";
 import Wrapper, { Row } from "../Wrapper/Wrapper";
