@@ -32,31 +32,37 @@ const Home = () => {
           return;
         }
         const { auth_data } = response.data;
-        setIsAuthenticated(true);
-        localStorage.setItem("auth_data", JSON.stringify(auth_data));
-        setUser({
-          ...auth_data,
-          userId: id
-        });
-        setIsAuthenticating(false);
+
+        if (auth_data) {
+          setIsAuthenticated(true);
+          localStorage.setItem("auth_data", JSON.stringify(auth_data));
+          spotifyApi.setToken(auth_data.access_token);
+          setUser({
+            ...auth_data,
+            userId: id
+          });
+          setIsAuthenticating(false);
+        } else {
+          setIsAuthenticated(false);
+          setIsAuthenticating(false);
+        }
       } else {
         const authDataFromStorage = localStorage.getItem("auth_data");
-        if (authDataFromStorage) {
+        if (authDataFromStorage && authDataFromStorage !== "undefined") {
           const data = JSON.parse(authDataFromStorage);
           const userId = localStorage.getItem("userId");
+          spotifyApi.setToken(data.access_token);
           setUser({
             ...data,
             userId
           });
-          // TODO: verify tokens
-          setIsAuthenticated(false);
+          setIsAuthenticated(true);
           setIsAuthenticating(false);
-
           return;
         }
+        setIsAuthenticated(false);
+        setIsAuthenticating(false);
       }
-      setIsAuthenticated(true);
-      setIsAuthenticating(false);
     })();
   }, [setUser]);
 

@@ -17,6 +17,8 @@ const MusicPlayer = () => {
               src={track.sourceUrl}
               height="80"
               title={track.id}
+              allowtransparency="true"
+              allow="encrypted-media"
             />
           );
         })}

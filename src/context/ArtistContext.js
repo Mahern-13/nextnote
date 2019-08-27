@@ -19,7 +19,6 @@ const initialState = {
   topTracks: [],
   relatedArtists: [],
   currentArtist: null,
-  position: null,
   events: []
 };
 
@@ -27,13 +26,6 @@ const reducer = (state, action) => {
   switch (action.type) {
     case "setArtistState":
       return action.payload;
-    case "setLocation":
-      const location = action.payload._embedded.venues[0].location;
-      const { latitude, longitude } = location;
-      return {
-        ...state,
-        position: [parseFloat(latitude), parseFloat(longitude)]
-      };
     default:
       return state;
   }
@@ -78,8 +70,7 @@ export const ArtistContextProvider = props => {
         track.sourceUrl = `${base}/embed${urlSecondPart}`;
         return track;
       }),
-      events: tourData,
-      position: state.position
+      events: tourData
     };
     dispatch({ type: "setArtistState", payload });
   };
