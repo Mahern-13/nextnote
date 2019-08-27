@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import ArtistBrowser from "../components/ArtistBrowser/ArtistBrowser";
 import { ArtistContextProvider } from "../context/ArtistContext";
-import { Primary as Card } from "../components/Card/Card";
+import { Secondary as Card } from "../components/Card/Card";
 import Wrapper, { Row } from "../components/Wrapper/Wrapper";
 
 import ScaleLoader from "react-spinners/ScaleLoader";
@@ -10,10 +10,6 @@ import ScaleLoader from "react-spinners/ScaleLoader";
 import spotifyApi from "../api/spotifyApi";
 import { withAsync } from "../utils";
 import { useUserActionsContext } from "../context/UserContext";
-
-const override = `
-  margin: 0 0 0 10px;
-`;
 
 const Home = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -70,7 +66,7 @@ const Home = () => {
         <Card header={false}>
           <Row styling={{ alignItems: "center" }}>
             <h2>Loading</h2>
-            <ScaleLoader css={override} color="#fff" />
+            <ScaleLoader css={{ margin: "0 0 0 10px" }} color="#fff" />
           </Row>
         </Card>
       </Wrapper>

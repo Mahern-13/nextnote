@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Default as Card, Secondary as SecondaryCard } from "../Card/Card";
+import { Default as Card } from "../Card/Card";
 import Wrapper, { Row, Column } from "../Wrapper/Wrapper";
 import ReactMapGL, { Marker } from "react-map-gl";
 import TrebleClef from "../../assets/treble-clef.png";
@@ -43,12 +43,27 @@ const TourDates = () => {
                   alignSelf: "center"
                 }}
               >
-                <SecondaryCard header={false}>
+                <Card header={false}>
                   <Column styling={{ padding: "5px", fontSize: "12px" }}>
-                    <p>{event.name}</p>
-                    <p>{`Starts: ${event.dates.start.localDate}`}</p>
+                    <Row>{event.name}</Row>
+                    <Row
+                      styling={{
+                        justifyContent: "space-between",
+                        alignItems: "center"
+                      }}
+                    >
+                      <p>{`Date: ${event.dates.start.localDate}`}</p>
+                      <a
+                        href={event.url}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                        className="button button-secondary button-sm"
+                      >
+                        Buy Tickets
+                      </a>
+                    </Row>
                   </Column>
-                </SecondaryCard>
+                </Card>
               </Row>
             );
           })

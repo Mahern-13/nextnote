@@ -29,6 +29,6 @@ export const Default = props => (
 export const Primary = props => (
   <BaseButton {...props} buttonType={TYPES.PRIMARY} />
 );
-export const Warning = props => (
+export const Secondary = props => (
   <BaseButton {...props} buttonType={TYPES.SECONDARY} />
 );

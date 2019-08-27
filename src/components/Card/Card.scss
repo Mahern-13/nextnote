@@ -174,7 +174,7 @@
   );
 }
 
-.card-warning {
+.card-secondary {
   @include card-variant(
     $card-secondary-border,
     $card-secondary-heading-bg,

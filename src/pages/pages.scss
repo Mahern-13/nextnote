@@ -1,8 +1,13 @@
+@import "../assets/styles/variables";
+
 .login-button {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -300%);
+  -moz-box-shadow: 0 0 5px darken($color-primary, 5%);
+  -webkit-box-shadow: 0 0 5px darken($color-primary, 5%);
+  box-shadow: 0 0 5px darken($color-primary, 5%);
 }
 
 .loading-notice {

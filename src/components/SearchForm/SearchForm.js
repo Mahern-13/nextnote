@@ -37,7 +37,8 @@ const SearchArtist = () => {
 
   const { name } = form;
 
-  const _onSubmitForm = async () => {
+  const _onSubmitForm = async e => {
+    e.preventDefault();
     const [response, error] = await withAsync(() =>
       axios.get(
         `http://localhost:3000/spotify/search/${name}?userId=bronzedradio`
@@ -56,23 +57,25 @@ const SearchArtist = () => {
   return (
     <Wrapper styling={{ width: "100%" }}>
       <PrimaryCard className="search-artist" cardType="primary" header={false}>
-        <Row styling={{ justifyContent: "space-between" }}>
-          <TextInput
-            id="name-input"
-            label="Artist Name"
-            type="text"
-            name="name"
-            value={name}
-            onChange={onChange}
-          />
-          <SubmitButton
-            styling={{ marginLeft: "10px" }}
-            disabled={false}
-            text="Search"
-            onClick={_onSubmitForm}
-            buttonSize="LARGE"
-          />
-        </Row>
+        <form onSubmit={_onSubmitForm}>
+          <Row styling={{ justifyContent: "space-between" }}>
+            <TextInput
+              id="name-input"
+              label="Artist Name"
+              type="text"
+              name="name"
+              value={name}
+              onChange={onChange}
+            />
+            <SubmitButton
+              styling={{ marginLeft: "10px" }}
+              disabled={false}
+              type="submit"
+              text="Search"
+              buttonSize="LARGE"
+            />
+          </Row>
+        </form>
       </PrimaryCard>
     </Wrapper>
   );
