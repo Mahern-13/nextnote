@@ -6,3 +6,6 @@ export const withAsync = async fn => {
     return [null, error];
   }
 };
+
+export const trimPhoneNumber = el =>
+  el.match(/(\(|\d)([0-9]|[A-Z]|[()-\s])+\d{2}\)?/)[0].trim();

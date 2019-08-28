@@ -1,0 +1,10 @@
+@import "../../assets/styles/variables";
+
+.map-container {
+  width: 300px;
+  height: 300px;
+}
+
+.mapboxgl-popup-content.venue-name {
+  overflow-wrap: "break-word";
+}

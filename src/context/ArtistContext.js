@@ -3,7 +3,8 @@ import React, {
   createContext,
   useMemo,
   useReducer,
-  useEffect
+  useEffect,
+  useCallback
 } from "react";
 import spotifyApi from "../api/spotifyApi";
 import { withAsync } from "../utils";
@@ -31,61 +32,67 @@ const reducer = (state, action) => {
   }
 };
 
+const fetchPayload = async (artist, user) => {
+  const { id, name } = artist;
+
+  const [response, error] = await withAsync(() =>
+    Promise.all([
+      spotifyApi.oauth(id, user),
+      ticketMasterApi.getUpcomingTours(name)
+    ])
+  );
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  const [artistData, tourData] = response;
+
+  if (artistData.data && artistData.data.error === "refresh_token_failed") {
+    window.location.href = "http://localhost:3000/spotify/login";
+    return;
+  }
+
+  const base = "https://open.spotify.com";
+  const payload = {
+    ...artistData.data,
+    relatedArtists: artistData.data.relatedArtists.artists.slice(0, 10),
+    topTracks: artistData.data.topTracks.tracks.map(track => {
+      const src = track.external_urls.spotify;
+      const [, urlSecondPart] = src.split(base);
+      track.sourceUrl = `${base}/embed${urlSecondPart}`;
+      return track;
+    }),
+    events: tourData
+  };
+
+  return payload;
+};
+
 export const ArtistContextProvider = props => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const user = useUserContext();
 
-  const _fetchArtist = async (
-    artist = { id: "4dpARuHxo51G3z768sgnrY", name: "Adele" }
-  ) => {
-    const { id, name } = artist;
-
-    const [response, error] = await withAsync(() =>
-      Promise.all([
-        spotifyApi.oauth(id, user),
-        ticketMasterApi.getUpcomingTours(name)
-      ])
-    );
-
-    if (error) {
-      console.error(error);
-      return;
-    }
-
-    const [artistData, tourData] = response;
-
-    if (artistData.data && artistData.data.error === "refresh_token_failed") {
-      window.location.href = "http://localhost:3000/spotify/login";
-      return;
-    }
-
-    const base = "https://open.spotify.com";
-
-    const payload = {
-      ...artistData.data,
-      relatedArtists: artistData.data.relatedArtists.artists.slice(0, 10),
-      topTracks: artistData.data.topTracks.tracks.map(track => {
-        const src = track.external_urls.spotify;
-        const [, urlSecondPart] = src.split(base);
-        track.sourceUrl = `${base}/embed${urlSecondPart}`;
-        return track;
-      }),
-      events: tourData
-    };
-    dispatch({ type: "setArtistState", payload });
-  };
+  const _fetchArtist = useCallback(
+    async (artist = { id: "4dpARuHxo51G3z768sgnrY", name: "Adele" }) => {
+      const payload = await fetchPayload(artist, user);
+      dispatch({ type: "setArtistState", payload });
+    },
+    [user]
+  );
 
   const actions = useMemo(
     () => ({
       fetchArtist: _fetchArtist,
       dispatch
     }),
-    []
+    [_fetchArtist]
   );
 
   useEffect(() => {
     _fetchArtist();
-  }, []);
+  }, [_fetchArtist]);
 
   return (
     <ArtistContext.Provider value={state}>
