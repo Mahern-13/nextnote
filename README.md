@@ -82,4 +82,5 @@ REACT_APP_MAPBOX_TOKEN=?
 ### Launching backend
 
 `yarn`
+<br />
 `yarn start`
