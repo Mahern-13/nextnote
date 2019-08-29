@@ -1,6 +1,6 @@
 import React, { memo, useState } from "react";
 import { Default as SubmitButton } from "../Button/Button";
-import { Primary as PrimaryCard } from "../Card/Card";
+import { Primary as Card } from "../Card/Card";
 import { useArtistActionsContext } from "../../context/ArtistContext";
 import TextInput from "../TextInput/TextInput";
 import Wrapper, { Row } from "../Wrapper/Wrapper";
@@ -56,7 +56,7 @@ const SearchArtist = () => {
 
   return (
     <Wrapper styling={{ width: "100%" }}>
-      <PrimaryCard className="search-artist" cardType="primary" header={false}>
+      <Card className="search-artist" header={false}>
         <form onSubmit={_onSubmitForm}>
           <Row styling={{ justifyContent: "space-between" }}>
             <TextInput
@@ -76,7 +76,7 @@ const SearchArtist = () => {
             />
           </Row>
         </form>
-      </PrimaryCard>
+      </Card>
     </Wrapper>
   );
 };

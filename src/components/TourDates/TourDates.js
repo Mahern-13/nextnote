@@ -24,6 +24,8 @@ const TourDates = () => {
   useEffect(() => {
     if (events.length) {
       setMapCity(events[0]);
+    } else {
+      setCity(null);
     }
   }, [events]);
 
@@ -55,7 +57,13 @@ const TourDates = () => {
               >
                 <Card header={false}>
                   <Column styling={{ padding: "5px", fontSize: "12px" }}>
-                    <Row>{event.name}</Row>
+                    <Row
+                      styling={{
+                        justifyContent: "flex-start"
+                      }}
+                    >
+                      {event.name}
+                    </Row>
                     <Row
                       styling={{
                         justifyContent: "space-between",
@@ -68,6 +76,7 @@ const TourDates = () => {
                         rel="noopener noreferrer"
                         target="_blank"
                         className="button button-secondary button-sm"
+                        style={{ marginLeft: "10px" }}
                       >
                         Buy Tickets
                       </a>
