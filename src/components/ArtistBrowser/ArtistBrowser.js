@@ -1,5 +1,4 @@
 import React from "react";
-import "./ArtistBrowser.scss";
 import MusicPlayer from "../MusicPlayer/MusicPlayer";
 import RelatedArtists from "../RelatedArtists/RelatedArtists";
 import SearchForm from "../SearchForm/SearchForm";
