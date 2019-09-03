@@ -12,10 +12,7 @@ const RelatedArtists = () => {
   const { fetchArtist } = useArtistActionsContext();
 
   return (
-    <Wrapper
-      assignClass="related-artists"
-      styling={{ padding: "0px", maxWidth: "40%" }}
-    >
+    <Wrapper assignClass="related-artists">
       <Card header="Related Artists">
         {relatedArtists ? (
           relatedArtists.map(artist => {

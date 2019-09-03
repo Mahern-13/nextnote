@@ -9,7 +9,14 @@ const divStyle = {
   flexDirection: "row"
 };
 
-const Wrapper = ({ styling, assignClass, onClick, children, disabled }) => (
+const Wrapper = ({
+  styling,
+  assignClass,
+  onClick,
+  children,
+  disabled,
+  ...props
+}) => (
   <div
     className={assignClass ? `wrapper ${assignClass}` : "wrapper"}
     onClick={!disabled && onClick ? onClick : () => {}}
@@ -17,6 +24,7 @@ const Wrapper = ({ styling, assignClass, onClick, children, disabled }) => (
       ...divStyle,
       ...styling
     }}
+    {...props}
   >
     {children}
   </div>
@@ -29,7 +37,7 @@ export const Column = props => (
 );
 
 export const Row = props => (
-  <Wrapper {...props} sylying={{ ...props.styling, flexDirection: "row" }}>
+  <Wrapper {...props} styling={{ ...props.styling, flexDirection: "row" }}>
     {props.children}
   </Wrapper>
 );

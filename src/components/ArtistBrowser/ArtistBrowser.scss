@@ -1,0 +1,39 @@
+.row-content-container {
+  @media screen and (max-width: 768px) {
+    flex-direction: column-reverse !important;
+  }
+}
+
+.artist-browser-content {
+  width: 90%;
+  @media screen and (max-width: 768px) {
+    width: 100% !important;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    width: 100%;
+  }
+
+  // @media screen and (min-width: 1024px) and (max-width: 1024px) and (orientation: landscape) {
+  //   width: 90;
+  // }
+}
+
+.music-artists-container {
+  @media screen and (max-width: 768px) {
+    flex-direction: column !important;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    flex-direction: row !important;
+  }
+}
+
+.events-content-row {
+  flex: 1 0 auto;
+  justify-content: center;
+}
+
+.artist-content-row {
+  flex: 3 0 auto;
+  justify-content: center;
+}

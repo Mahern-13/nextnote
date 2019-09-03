@@ -71,7 +71,7 @@ const fetchPayload = async (artist, user) => {
 
   if (artistData.data && artistData.data.error === "refresh_token_failed") {
     window.location.href = "http://localhost:3000/spotify/login";
-    return;
+    return {};
   }
 
   const base = "https://open.spotify.com";

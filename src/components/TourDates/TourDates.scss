@@ -1,3 +1,16 @@
+.tour-dates {
+  align-items: center;
+  @media screen and (max-width: 768px) {
+    padding: 5px 20px !important;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    flex-direction: row !important;
+  }
+  @media screen and (min-width: 1024px) {
+    flex-direction: column !important;
+  }
+}
+
 .event {
   max-width: 300px;
   cursor: pointer;

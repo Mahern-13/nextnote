@@ -40,7 +40,7 @@ const TourDates = () => {
   }, [city]);
 
   return (
-    <Column className="tour-dates" styling={{ alignItems: "center" }}>
+    <Column className="tour-dates">
       <Card header="Upcoming Concerts">
         {events.length ? (
           events.map(event => {

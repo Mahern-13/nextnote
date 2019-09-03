@@ -2,7 +2,7 @@ import React from "react";
 import "../Button/Button.scss";
 import { Primary as Card } from "../Card/Card";
 import Wrapper, { Row, Column } from "../Wrapper/Wrapper";
-
+import "./ArtistInfo.scss";
 import { useArtistContext } from "../../context/ArtistContext";
 
 const ArtistInfo = () => {
@@ -11,7 +11,10 @@ const ArtistInfo = () => {
     <Wrapper assignClass="artist-info">
       {Object.keys(currentArtist).length > 0 && (
         <Card header={currentArtist.name}>
-          <Row styling={{ justifyContent: "space-between" }}>
+          <Row
+            assignClass="artist-info-content"
+            styling={{ justifyContent: "space-between" }}
+          >
             <img
               src={currentArtist.images[0].url}
               height="200px"

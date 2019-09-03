@@ -5,18 +5,19 @@ import SearchForm from "../SearchForm/SearchForm";
 import ArtistInfo from "../ArtistInfo/ArtistInfo";
 import TourDates from "../TourDates/TourDates";
 import Wrapper, { Row, Column } from "../Wrapper/Wrapper";
+import "./ArtistBrowser.scss";
 
 const ArtistBrowser = () => {
   return (
-    <Wrapper>
-      <Row styling={{ flex: "1 0 auto", justifyContent: "center" }}>
+    <Wrapper assignClass="row-content-container">
+      <Row assignClass="events-content-row">
         <TourDates />
       </Row>
-      <Row styling={{ flex: "3 0 auto", justifyContent: "center" }}>
-        <Column styling={{ width: "90%" }}>
+      <Row assignClass="artist-content-row">
+        <Column assignClass="artist-browser-content">
           <SearchForm />
           <ArtistInfo />
-          <Row>
+          <Row assignClass="music-artists-container">
             <MusicPlayer />
             <RelatedArtists />
           </Row>

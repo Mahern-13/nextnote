@@ -2,10 +2,19 @@
   grid-auto-columns: min-content;
   height: 430px;
   width: auto;
+  padding: 5px 0px;
+  max-width: 40%;
+
+  @media screen and (max-width: 768px) {
+    max-width: 100% !important;
+  }
 }
 
 .artist {
   cursor: pointer;
+  @media screen and (max-width: 768px) {
+    justify-content: flex-start !important;
+  }
 }
 
 .artist:hover {
