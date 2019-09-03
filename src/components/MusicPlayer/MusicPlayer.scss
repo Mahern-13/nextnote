@@ -1,4 +1,8 @@
 .music-player {
   height: 410px;
   width: auto;
+
+  @media screen and (min-width: 768px) and (max-width: 1224px) {
+    flex: 2 0 auto !important;
+  }
 }

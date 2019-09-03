@@ -5,14 +5,15 @@
   padding: 5px 0px;
   max-width: 40%;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1224px) {
     max-width: 100% !important;
+    flex: 1 0 auto !important;
   }
 }
 
 .artist {
   cursor: pointer;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1224px) {
     justify-content: flex-start !important;
   }
 }
