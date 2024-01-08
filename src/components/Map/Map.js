@@ -10,6 +10,7 @@ import PhoneIcon from "../Icons/Phone";
 import StadiumIcon from "../Icons/Stadium";
 import TrebleClef from "../../assets/treble-clef.png";
 import { trimPhoneNumber } from "../../utils/index";
+import './Map.scss'
 
 const popupDataStyles = {
   padding: "2px 0px",
@@ -19,19 +20,25 @@ const popupDataStyles = {
 
 const Map = ({ city, viewport, setViewport }) => {
   const [showPopup, setPopup] = useState(false);
-
+  
   return (
     <div className="map-container">
       {city && (
         <ReactMapGL
           {...viewport}
+          viewState={viewport}
           transitionDuration={1000}
-          transitionInterpolator={new FlyToInterpolator()}
-          transitionInterruption={TRANSITION_EVENTS.BREAK}
+          /**
+           * TODO: FlyToInterpolator was deprecated and is not available. Check how to replace it
+           */
+          // transitionInterpolator={new FlyToInterpolator()}
+          // transitionInterruption={TRANSITION_EVENTS.BREAK}
           onViewportChange={viewport => {
             setViewport(viewport);
           }}
-          mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+          mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+          mapLib={import('mapbox-gl')}
+          mapStyle="mapbox://styles/mapbox/streets-v9"
         >
           {showPopup && (
             <Popup

@@ -27,6 +27,7 @@ const ArtistInfo = () => {
                 <a
                   href={currentArtist.external_urls.spotify}
                   className="button button-default button-lg"
+                  target="_blank" rel="noreferrer"
                 >
                   Go to Spotify
                 </a>
