@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
 import ArtistBrowser from "../components/ArtistBrowser/ArtistBrowser";
 import { ArtistContextProvider } from "../context/ArtistContext";
 import { Secondary as Card } from "../components/Card/Card";
@@ -10,6 +9,7 @@ import ScaleLoader from "react-spinners/ScaleLoader";
 import spotifyApi from "../api/spotifyApi";
 import { withAsync } from "../utils";
 import { useUserActionsContext } from "../context/UserContext";
+import Redirect from "../components/Redirect/Redirect";
 
 const Home = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
